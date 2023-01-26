@@ -1,0 +1,169 @@
+/**
+ * ------------------------------------------------------------------------
+ * JA Autoshop Template
+ * ------------------------------------------------------------------------
+ * Copyright (C) 2004-2018 J.O.O.M Solutions Co., Ltd. All Rights Reserved.
+ * @license - Copyrighted Commercial Software
+ * Author: J.O.O.M Solutions Co., Ltd
+ * Websites:  http://www.joomlart.com -  http://www.joomlancers.com
+ * This file may not be redistributed in whole or significant part.
+ * ------------------------------------------------------------------------
+*/
+
+ // Category Dropdown
+// --------------
+(function($){
+  $(window).on('load', function(){ 
+	  // fix menu left.
+	  fixmenuleft();
+	  leftsidebar();
+
+    $(window).on('resize', function(){
+  	  fixmenuleft();
+    });
+
+	  function fixmenuleft() {
+	  	if (!$('.t3-navbar-category').hasClass('category-dropdown')) {
+	  		$('.t3-navbar-category').addClass('home');
+	  	}
+
+		  if ($(window).width() > 1199) { // detect not tap device.
+		  	$('.t3-navbar-category.home').removeClass('category-dropdown');
+		  }
+	
+			if($('.t3-navbar-category.category-dropdown').length > 0) {
+			  $('.t3-navbar-category.category-dropdown .module-title ').off().unbind().click(function() {
+					$('.t3-navbar-category.category-dropdown').toggleClass('open');
+			  });
+			}
+
+			// Reset Category dropdown when click outsite.
+			$(document).on('click', function (e) {
+			  var containerTitle = $('.t3-navbar-category.category-dropdown .module-title'),
+				  containerCt = $('.t3-navbar-category.category-dropdown .module-ct');
+
+			  if (!containerCt.is(e.target) && !containerTitle.is(e.target) && containerTitle.has(e.target).length === 0 && containerCt.has(e.target).length === 0)
+			  {
+				$('.t3-navbar-category.category-dropdown').removeClass('open');
+			  }
+			});
+	  }
+
+	  function leftsidebar() {
+	  	if($('#t3-home .t3-sidebar').length > 0 && $('.t3-slideshow').length > 0) {
+	  		$navMenu = $('.t3-navbar-category .menu').offset().top + $('.t3-navbar-category .menu').outerHeight();
+	  		$topSidebar = $('.t3-sidebar').offset().top;
+
+	  		$('#t3-home .t3-sidebar').css('margin-top',$navMenu - $topSidebar);
+	  	}
+	  }
+
+	 // fix mega menu 
+	 $('.t3-navbar .t3-megamenu ul li > a,.t3-navbar-category ul.nav li > a').on('click', function(e){
+    	if ($(this).hasClass('dropdown-toggle')) {
+    		window.location.href = $(this).attr('href');
+    	}
+    });
+
+    $('.t3-navbar-collapse ul li > a').on('click', function(e){
+      if ($('.t3-navbar-collapse ul li').hasClass('dropdown')) {
+        window.location.href = $(this).attr('href');
+      }
+    });
+
+  });
+
+  $(window).on('load', function () {
+  	setInterval(function(){ calheight('.vmproduct', '.vmproduct-title', '.vm-product-descr-container-1', 'parent'); }, 500);
+  	function calheight(_parent, _children, _depend, _extend) {
+  		parentEle = $(_parent);
+  		for (i=0;i<parentEle.length;i++) {
+  			if (!$(parentEle[i]).find(_children).length || $(parentEle[i]).is(':hidden')) continue; // continue if no children appear.
+  			var max=0;
+  			var dependmin=$($(parentEle[i]).find(_depend)[0]).height();
+  			dependele = $(parentEle[i]).find(_depend);
+  			for (j=0;j<dependele.length;j++) { // get the minimun height after caculate.
+  				if (dependmin>$(dependele[j]).height())
+  					dependmin=$(dependele[j]).height();
+  			}
+  			childele = $(parentEle[i]).find(_children);
+  			for (j=0;j<childele.length;j++) {
+  				$height = $(childele[j]).height(); // default element use to calculate.
+  				if (_extend=='parent') $height = $(childele[j]).parent().height(); // if we need to use parent to calculate.
+  				if (_extend=='child') $height = $(childele[j]).childrent().height(); // if we need to use children to calculate.
+  				if ($height>max)
+						max = $height;
+				}
+				if (dependmin==max) continue; // if already calculate height we continue;
+				if (max>0) { // only recalculate with the visibility element.
+					$(parentEle[i]).find(_depend).css('min-height', max);
+  			}
+  		}
+  	}
+  });
+
+  $(document).ready(function(){
+    ////////////////////////////////
+    // equalheight for col
+    ////////////////////////////////
+    var ehArray = ehArray2 = [],
+      i = 0;
+
+    $('.equal-height').each (function(){
+      var $ehc = $(this);
+      if ($ehc.has ('.equal-height')) {
+        ehArray2[ehArray2.length] = $ehc;
+      } else {
+        ehArray[ehArray.length] = $ehc;
+      }
+    });
+
+    for (i = ehArray2.length -1; i >= 0; i--) {
+      ehArray[ehArray.length] = ehArray2[i];
+    }
+
+    var equalHeight = function() {
+      for (i = 0; i < ehArray.length; i++) {
+        var $cols = ehArray[i].children().filter('.col'),
+          maxHeight = 0,
+          equalChildHeight = ehArray[i].hasClass('equal-height-child');
+
+      // reset min-height
+        if (equalChildHeight) {
+          $cols.each(function(){$(this).children().first().css('min-height', 0)});
+        } else {
+          $cols.css('min-height', 0);
+        }
+        $cols.each (function() {
+          maxHeight = Math.max(maxHeight, equalChildHeight ? $(this).children().first().innerHeight() : $(this).innerHeight());
+        });
+        if (equalChildHeight) {
+          $cols.each(function(){$(this).children().first().css('min-height', maxHeight + 3)});
+        } else {
+          $cols.css('min-height', maxHeight + 3);
+        }
+      }
+
+      // store current size
+      $('.equal-height > .col').each (function(){
+        var $col = $(this);
+        $col.data('old-width', $col.width()).data('old-height', $col.innerHeight());
+      });
+    };
+
+    equalHeight();
+
+    // monitor col width and fire equalHeight
+    setInterval(function() {
+      $('.equal-height > .col').each(function(){
+        var $col = $(this);
+        if (($col.data('old-width') && $col.data('old-width') != $col.width()) ||
+            ($col.data('old-height') && $col.data('old-height') != $col.innerHeight())) {
+          equalHeight();
+          // break each loop
+          return false;
+        }
+      });
+    }, 500);
+    });
+})(jQuery);

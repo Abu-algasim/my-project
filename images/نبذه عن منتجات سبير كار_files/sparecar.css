@@ -1,0 +1,153 @@
+@import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
+.t3-spotlight.t3-footnav.equal-height.equal-height-child.row {
+    display: none;
+}
+.slide-title {
+    text-shadow: 5px 5px 50px #61c2db;
+    text-align: right;
+    font-size: 62px;
+}
+.lead {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #e6e6e6;
+    text-shadow: 1px 1px 5px #122625;
+    color: #fff !important;
+    text-align: right;
+}
+.slide-action {
+    text-align: right;
+}
+.item {
+    padding-bottom: 240px !important;
+}
+.fet1 {
+    background: #ae2020;
+    padding: 2px 5px;
+    width: 110px;
+    border-radius: 25px;
+}
+.fet2 {
+    background: #00b765;
+    padding: 2px 5px;
+    width: 110px;
+    border-radius: 25px;
+}
+.bannerat .link-btn {
+    font-size: 0px;
+}
+.farsh h3 {
+    font-size: 16px;
+    padding: 25px 0px;
+}
+.tel {
+    letter-spacing: 1px;
+}
+.module.footer-copy {
+    text-align: center;
+    font-family: 'Noto Kufi Arabic', sans-serif;
+}
+.contact {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+}
+body {
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+}
+#t3-header .col-xs-6.col-sm-8.col-md-9 {
+    margin-top: 15px;
+}
+.farsh-img img {
+    height: 500px;
+}
+.spareimg img {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.category {
+    background: #fff;
+    margin: 30px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 13px 1px #e9e9e9;
+}
+.category img {
+    width: 184px;
+    float: left;
+}
+.category a {
+    color: #095a9f !important;
+    font-size: 25px;
+}
+.dawasa .category a {
+    font-size: 16px !important;
+}
+.farsh .category a {
+    font-size: 15px !important;
+}
+.spacer h2 {
+    margin: 0;
+    font-size: 25px;
+}
+.addtocart-button {
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+}
+a {
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+}
+.com_virtuemart #com-form-login #com-form-login-remember input.default {
+
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+}
+.width50.floatleft.ship {
+    display: none;
+}
+.com_virtuemart input[type="submit"], .com_virtuemart button.default, .com_virtuemart button.vm-button-correct, .com_virtuemart button.vm-button, .com_virtuemart .buttonBar-right button {
+    font-family: 'Noto Kufi Arabic', sans-serif !important;
+}
+#userForm {
+    background: #fff;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+h1 {
+    font-size: 45px !important;
+}
+.social-list-top {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-end;
+}
+.social-list-top > li {
+  margin-right: 10px;
+}
+.social-list-top > li > a {
+    color: #ffffff;
+    display: inline-block;
+    text-align: center;
+    width: 40px;
+    font-size: 25px;
+    line-height: 44px;
+}
+.social-list-top > li > a:focus,
+.social-list-top > li > a:active,
+.social-list-top > li > a:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+}
+tr.sectiontableentry1.payship {
+    display: none;
+}
+tr.sectiontableentry1.paycart {
+    display: none;
+}
+input.coupon {
+    display: inline-block;
+    width: 70%;
+    float: right;
+    margin-top: 5px;
+}
+.reg_text {
+    text-align: right;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project 1</title>
+    <!-- fontaowsm librry -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- bootstrap librry -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- veu js librry -->
+    <script src="js/vue.global.js"></script>
+    <!-- my style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- start home pig -->
+    <div class="content">
+        <header>
+            <!-- start nav -->
+            <nav class="navbar navbar-expand-lg navbar-dark  sticky-top">
+                <div class="container-fluid">
+                    <a href="#" class="navbar-brand"><img class="img-fluid rounded" src="images/logo.jpg" alt=""></a>
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div id="navbarCollapse" class="collapse navbar-collapse">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item"><a href="Home.html" class="nav-link">Home</a></li>
+                            <li class="nav-item"><a href="Store.html" class="nav-link">Store</a></li>
+                            <li class="nav-item"><a href="Fourm.html" class="nav-link">Fourm</a></li>
+                            <li class="nav-item"><a href="Contact.html" class="nav-link">Contact</a></li>
+                        </ul>
+                        <div class="input-searsh w-25 d-flex">
+                            <input type="search" class="form-control" placeholder="Search">
+                            <button class="btn btn-success">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </div>
+                        <ul class="login-ul d-flex">
+                            <li class="nav-item list-unstyled mt-2"><a href="#" class="nav-link text-white ">Login</a></li>
+                            <li class="nav-item list-unstyled mt-2"><a href="#" class="nav-link text-white">Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- end nav -->
+        </header>
+        <!-- start min section -->
+        <h2 class="list-titel text-capitalize text-center mt-4 mb-4">fourm list group car stor</h2>
+        <!-- section list group -->
+        <section class="row container m-auto" id="app">
+            <div class="row">
+                <ul class="list-group" v-for="(post,index) in postes">
+                    <li class="list-group-item m-1" >
+                       {{index+1}}# 
+                       <h5>product: {{post.name}}</h5>
+                       <img class="imgaa img-fluid card-img" src="images/car7.png" alt=""><br>
+                       <span>price: ${{post.price}}</span>
+                       <p>discrpion: {{post.discrpion}}</p>
+                       <figure>color:{{post.color}}</figure>
+                       <button class="btn-danger bg-danger float-end" @click="postes.splice(index,1)">delete</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="row w-50">
+                <form @submit.prevent="postes.push({name:name,price:price,discrpion:discrpion,color:color});
+                    name='';price='';discrpion='';color=''">
+                    <input  type="text" class="form-control" placeholder="add car" v-model="name">
+                    <input  type="number" class="form-control" placeholder="price" v-model="price">
+                    <input  type="text" class="form-control" placeholder="discrpion" v-model="discrpion">
+                    <input  type="text" class="form-control" placeholder="color" v-model="color">
+                    <button class="btn btn-success m-1">Add Car</button>
+                </form>
+            </div>
+        </section>
+        <!-- section list group -->
+        <!-- start footer -->
+        <footer>
+            <div class="row">
+                <div class="foot ps-4 pe-4 d-flex justify-content-between align-content-between">
+                    <p class="copyright mt-3">Copyright &copy; 2022 <a href="#">Car Stor</a></p>
+                    <p>
+                        <a href="#"><i class="fa-brands fa-linkedin pt-3 fa-2x text-success"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-square pt-3 fa-2x text-success"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter-square pt-3 fa-2x text-success"></i></a>
+                    </p>
+                    <p class="developer mt-3">Developed By Abu algasim Mohamed</p>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+    </div>
+    <!-- end home pig -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return {
+                    name:"",
+                    price:"",
+                    discrpion:"",
+                    color:"",
+                    postes:[
+                    {name:'BMW',price:35000000,discrpion:'lorem bla bla ',color:'white'},
+                    {name:'TOYOTA',price:2000000,discrpion:'lorem bla bla ',color:'red'},
+                    {name:'HONDA',price:8000000,discrpion:'lorem bla bla ',color:'black'},
+                    {name:'GXR',price:55000000,discrpion:'lorem bla bla ',color:'white'}
+                    ]
+                }
+            }
+        })
+        app.mount("#app")
+    </script>
+</html>
